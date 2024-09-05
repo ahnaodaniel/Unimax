@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SISTEMA WEB</title>
+</head>
+<body>
+<h1> Adicionando dados em lista </h1>
+<hr>
+<ul>
+    {% for index, (tarefa, descricao) in tarefas_descricoes_with_index %}
+        <li>
+            <strong>{{ tarefa }}</strong><br>
+            -> {{ descricao }}
+            <form action="{{ url_for('remover_tarefa', index=index) }}" method="POST" style="display:inline;">
+                <button type="submit">Excluir</button>
+            </form>
+        </li>
+    {% endfor %}
+</ul>
+<form action="{{ url_for('principal') }}" method="POST">
+    <label>Título da Tarefa</label>
+    <input type="text" name="tarefa">
+    <label>Descrição da Tarefa</label>
+    <input type="text" name="descricao">
+    <button type="submit">Adicionar</button>
+</form>
+</body>
+</html>
